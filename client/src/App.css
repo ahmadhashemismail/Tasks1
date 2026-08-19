@@ -75,7 +75,7 @@
 }
 .nav span:hover {
   color: var(--rust) !important;
-  border-color: #dcae9c;
+  border-color: var(--rust-border);
   background: var(--rust-bg);
 }
 
@@ -272,10 +272,10 @@ input[type="checkbox"] {
 
 .delete-btn {
   background: var(--rust-bg);
-  border-color: #dcae9c;
+  border-color: var(--rust-border);
   color: var(--rust);
 }
-.delete-btn:hover { background: #ecc3b2; }
+.delete-btn:hover { background: #4a2c22; }
 
 /* Remove Done Tasks button sits above the list */
 .task-list ~ button,
@@ -334,8 +334,8 @@ main.container > button {
 .auth-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.55;
+  filter: blur(80px);
+  opacity: 0.3;
   z-index: 0;
 }
 .auth-blob-1 {
@@ -406,7 +406,7 @@ main.container > button {
   color: var(--ink-soft);
   border-radius: calc(var(--radius-sm) - 2px);
 }
-.auth-tab:hover { transform: none; background: rgba(255,255,255,0.5); }
+.auth-tab:hover { transform: none; background: rgba(255,255,255,0.06); }
 .auth-tab.active {
   background: var(--surface);
   color: var(--ink);
@@ -415,7 +415,7 @@ main.container > button {
 
 .auth-error {
   background: var(--rust-bg);
-  border: 1.5px solid #dcae9c;
+  border: 1.5px solid var(--rust-border);
   color: var(--rust);
   font-size: 0.85rem;
   font-weight: 600;

@@ -9,32 +9,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap");
 
 :root {
-  /* ---- color ---- */
-  --bg: #eef1ef;
-  --bg-alt: #e3e8e5;
-  --surface: #ffffff;
-  --ink: #16211c;
-  --ink-soft: #4b5b53;
-  --ink-faint: #8a9992;
+  /* ---- color (dark) ---- */
+  --bg: #101512;
+  --bg-alt: #182019;
+  --surface: #1a221e;
+  --ink: #eef3ef;
+  --ink-soft: #a7b8ae;
+  --ink-faint: #647468;
 
-  --accent: #2f6f5e;        /* pine — primary / done */
-  --accent-strong: #1f4d40;
-  --accent-bg: #dcece5;
-  --accent-border: #a3c9ba;
+  --accent: #4fae8f;        /* pine — primary / done, brightened for dark */
+  --accent-strong: #6fcaa9;
+  --accent-bg: #1e3730;
+  --accent-border: #3d6656;
 
-  --amber: #c9862c;         /* pending / not started */
-  --amber-bg: #f6e9d3;
+  --amber: #e0a94f;         /* pending / not started */
+  --amber-bg: #392c17;
 
-  --rust: #b3462c;          /* delete / expired */
-  --rust-bg: #f5e0d8;
+  --rust: #e2836a;          /* delete / expired */
+  --rust-bg: #3a231c;
+  --rust-border: #6b4536;
 
-  --line: #cdd7d1;
-  --line-strong: #aebcb4;
-  --text-muted: #8a9992;    /* referenced inline in App.jsx (sign-out) */
+  --line: #29332d;
+  --line-strong: #3c4941;
+  --text-muted: #647468;    /* referenced inline in App.jsx (sign-out) */
 
-  --shadow-sm: 0 1px 2px rgba(22, 33, 28, 0.06), 0 1px 1px rgba(22, 33, 28, 0.04);
-  --shadow-md: 0 6px 20px rgba(22, 33, 28, 0.10);
-  --shadow-lg: 0 20px 48px rgba(22, 33, 28, 0.16);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.6);
 
   /* ---- type ---- */
   --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
@@ -60,7 +61,7 @@
 }
 
 html {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
