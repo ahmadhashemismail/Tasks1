@@ -58,7 +58,7 @@ function AddTaskPage() {
           value={date}
         onChange={(e) => {
   setDate(e.target.value);
-  handletime();
+  handletime(e.target.value);
 }} /></div>
 <div> <label htmlFor="enddate">Task End Date</label>
         <input
