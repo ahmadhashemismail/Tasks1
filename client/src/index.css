@@ -306,4 +306,72 @@ tr:hover td {
 
 tr:last-child td {
   border-bottom: none;
+}/* ==========================================================================
+   7. HEADER & ROUTER NAVIGATION
+   ========================================================================== */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(15, 23, 42, 0.8); /* Semi-transparent background */
+  backdrop-filter: blur(12px);             /* Glassmorphism blur effect */
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.brand-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-logo:hover {
+  text-decoration: none;
+  color: var(--primary);
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+/* React Router <NavLink> styles */
+.nav-link {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  text-decoration: none;
+}
+
+/* Active Link State (Automatically added by react-router-dom's NavLink) */
+.nav-link.active {
+  color: #ffffff;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-hover);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
