@@ -1,72 +1,164 @@
-/* Base variables, typography, and default form styles across the entire app */
+/* ============================================================
+   TaskFlow — Global tokens & base styles
+   Concept: the "manifest" — tasks read like boarding-pass /
+   ledger stubs. Cool pine-and-slate palette, grotesk display
+   type, mono type for anything that behaves like data (dates,
+   status, counts).
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap");
+
 :root {
-  --primary: #4f46e5;
-  --primary-hover: #4338ca;
-  --bg-color: #f8fafc;
-  --card-bg: #ffffff;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --border-color: #e2e8f0;
-  --focus-ring: rgba(79, 70, 229, 0.2);
-  --radius: 8px;
+  /* ---- color ---- */
+  --bg: #eef1ef;
+  --bg-alt: #e3e8e5;
+  --surface: #ffffff;
+  --ink: #16211c;
+  --ink-soft: #4b5b53;
+  --ink-faint: #8a9992;
+
+  --accent: #2f6f5e;        /* pine — primary / done */
+  --accent-strong: #1f4d40;
+  --accent-bg: #dcece5;
+  --accent-border: #a3c9ba;
+
+  --amber: #c9862c;         /* pending / not started */
+  --amber-bg: #f6e9d3;
+
+  --rust: #b3462c;          /* delete / expired */
+  --rust-bg: #f5e0d8;
+
+  --line: #cdd7d1;
+  --line-strong: #aebcb4;
+
+  --shadow-sm: 0 1px 2px rgba(22, 33, 28, 0.06), 0 1px 1px rgba(22, 33, 28, 0.04);
+  --shadow-md: 0 6px 20px rgba(22, 33, 28, 0.10);
+  --shadow-lg: 0 20px 48px rgba(22, 33, 28, 0.16);
+
+  /* ---- type ---- */
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ---- shape / rhythm ---- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --space-1: 0.4rem;
+  --space-2: 0.8rem;
+  --space-3: 1.4rem;
+  --space-4: 2.2rem;
+  --space-5: 3.4rem;
 }
 
-* {
+/* ---- reset ---- */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+html {
+  color-scheme: light;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-main);
   margin: 0;
-  padding: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% -10%, var(--accent-bg) 0%, transparent 42%),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Global Form Elements */
-input[type="text"],
-input[type="date"],
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--space-2);
+}
+
+h1 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.2rem); font-weight: 700; }
+h2 { font-size: 1.15rem; font-weight: 600; }
+
+p { margin: 0 0 var(--space-2); color: var(--ink-soft); }
+
+a {
+  color: var(--accent-strong);
+  text-decoration: none;
+  font-weight: 600;
+}
+a:hover { text-decoration: underline; }
+
+/* visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+button {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  border: 1.5px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--radius-sm);
+  padding: 0.55em 1em;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.15s ease, border-color 0.15s ease;
+}
+button:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+button:active { transform: translateY(0); }
+
+input,
 textarea {
-  width: 100%;
-  padding: 0.625rem 0.875rem;
+  font-family: var(--font-body);
   font-size: 0.95rem;
-  font-family: inherit;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
-  background-color: #fff;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.65em 0.8em;
+  width: 100%;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
-
-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
+input::placeholder,
+textarea::placeholder { color: var(--ink-faint); }
 input:focus,
 textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--focus-ring);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
 }
+textarea { min-height: 6.5rem; resize: vertical; }
 
-button, 
-input[type="submit"] {
-  background-color: var(--primary);
-  color: #ffffff;
-  font-size: 0.95rem;
+label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 600;
-  padding: 0.75rem 1.25rem;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: var(--space-1);
 }
 
-button:hover,
-input[type="submit"]:hover {
-  background-color: var(--primary-hover);
+ul { list-style: none; margin: 0; padding: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
