@@ -18,8 +18,15 @@ function AddTaskPage() {
     await createTask({ title, note, date,enddate });
     navigate("/tasks");
   }
-
+  function handletime(date){
+    let startdate=  new Date(date);
+  let datenow=new Date();
+    if(startdate<datenow){
+    return <p style={{color:"red"}}>start date is in the past</p>
+    }
+  }
   return (
+
     <main className="container">
       <div style={{ maxWidth: "600px", margin: "0 auto" }}>
         <h1>➕ Create New Task</h1>
@@ -49,7 +56,10 @@ function AddTaskPage() {
           id="date"
           type="date"
           value={date}
-          onChange={(e) => setDate(e.target.value)} /></div>
+        onChange={(e) => {
+  setDate(e.target.value);
+  handletime();
+}} /></div>
 <div> <label htmlFor="enddate">Task End Date</label>
         <input
           id="enddate"
