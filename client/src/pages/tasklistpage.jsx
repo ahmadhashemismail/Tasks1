@@ -6,7 +6,14 @@ function TaskListPage() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    getTasks().then(setTasks);
+    getTasks().then(data => {
+      if (data.error) {
+        setTasks([]);
+        alert(data.error); // Show the "You don't have an account..." error
+      } else {
+        setTasks(data);
+      }
+    }).catch(() => setTasks([]));
   }, []);
 
   async function remove(id) {

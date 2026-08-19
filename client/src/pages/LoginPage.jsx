@@ -39,7 +39,7 @@ function LoginPage() {
     e.preventDefault();
     setError("");
     if (registerData.password !== registerData.confirm) {
-      setError("Passwords do not match.");
+      setError("incorrect password");
       return;
     }
     setLoading(true);
@@ -118,7 +118,7 @@ function LoginPage() {
               <input
                 id="login-password"
                 type="password"
-                placeholder="••••••••"
+                placeholder="password"
                 value={loginData.password}
                 onChange={(e) =>
                   setLoginData({ ...loginData, password: e.target.value })
@@ -139,7 +139,7 @@ function LoginPage() {
               <input
                 id="reg-name"
                 type="text"
-                placeholder="Ahmad Al-Najjar"
+                placeholder="your name"
                 value={registerData.name}
                 onChange={(e) =>
                   setRegisterData({ ...registerData, name: e.target.value })
@@ -165,7 +165,7 @@ function LoginPage() {
               <input
                 id="reg-password"
                 type="password"
-                placeholder="••••••••"
+                placeholder="password"
                 value={registerData.password}
                 onChange={(e) =>
                   setRegisterData({ ...registerData, password: e.target.value })
@@ -178,7 +178,7 @@ function LoginPage() {
               <input
                 id="reg-confirm"
                 type="password"
-                placeholder="••••••••"
+                placeholder="password"
                 value={registerData.confirm}
                 onChange={(e) =>
                   setRegisterData({ ...registerData, confirm: e.target.value })

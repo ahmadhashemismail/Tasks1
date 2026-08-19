@@ -11,5 +11,6 @@ CREATE TABLE tasks (
     note TEXT,
     date DATE,
     enddate DATE,
-    done BOOLEAN DEFAULT FALSE
+    done BOOLEAN DEFAULT FALSE,
+    account_id INT
 );

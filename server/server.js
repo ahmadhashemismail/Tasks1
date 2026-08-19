@@ -8,7 +8,11 @@ app.use(express.json());
 
 app.get("/api/tasks", async (req, res) => {
   try {
-    const result = await db.query("select * from tasks order by id");
+    const accountId = req.query.accountId;
+    if (!accountId) {
+      return res.status(401).json({ error: "You don't have an account, please create one." });
+    }
+    const result = await db.query("select * from tasks where account_id=$1 order by id", [accountId]);
     res.json(result.rows);
   } catch (error) {
     console.error("Error fetching tasks:", error);
@@ -71,10 +75,13 @@ app.put("/api/markdone/:id", async (req, res) => {
 
 app.post("/api/tasks", async (req, res) => {
   try {
-    const { title, note,date,enddate, done } = req.body;
+    const { title, note, date, enddate, done, account_id } = req.body;
+    if (!account_id) {
+      return res.status(401).json({ error: "You don't have an account, please create one." });
+    }
     const result = await db.query(
-      "insert into tasks (title,note,date,enddate,done) values ($1, $2,$3, $4, $5) returning *",
-      [title, note,date,enddate,done],
+      "insert into tasks (title, note, date, enddate, done, account_id) values ($1, $2, $3, $4, $5, $6) returning *",
+      [title, note, date, enddate, done, account_id],
     );
     res.status(201).json(result.rows[0]);
   } catch (error) {
