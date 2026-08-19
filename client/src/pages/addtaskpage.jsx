@@ -7,12 +7,13 @@ function AddTaskPage() {
   const [note, setNote] = useState("");
   const [ date, setDate] = useState("");
   const [enddate, setEnddate] = useState("");
+  const[error,setError] =useState("");
   const navigate = useNavigate()
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!title.trim()||   !date) {
-      alert("Please enter a task title and date");
+    if (!title.trim()||   !date || handletime(date)) {
+      setError("Please enter a task title and date");
       return;
     }
     await createTask({ title, note, date,enddate });
@@ -22,8 +23,9 @@ function AddTaskPage() {
     let startdate=  new Date(date);
   let datenow=new Date();
     if(startdate<datenow){
-    return <p style={{color:"red"}}>start date is in the past</p>
+    console.log(<p style={{color:"red"}}>start date is in the past</p>)
     }
+    
   }
   return (
 
@@ -59,7 +61,9 @@ function AddTaskPage() {
         onChange={(e) => {
   setDate(e.target.value);
   handletime(e.target.value);
-}} /></div>
+}} />
+(error&& <p style={{color:"red"}}>your enter invailed date </p> )
+</div>
 <div> <label htmlFor="enddate">Task End Date</label>
         <input
           id="enddate"
