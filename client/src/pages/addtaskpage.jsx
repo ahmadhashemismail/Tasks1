@@ -12,7 +12,7 @@ function AddTaskPage() {
   
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!title.trim()||   !date ||error||!enddate|| !note ) {
+    if (!title || !date ||error ||!enddate|| !note ) {
    alert("Please fill all fields");
     return;
     }
@@ -22,7 +22,7 @@ function AddTaskPage() {
   function handletime(date){
     let startdate=  new Date(date);
   let datenow=new Date();
-    setError(startdate < datenow);
+    setError(startdate <= datenow);
     
   }
   return (
