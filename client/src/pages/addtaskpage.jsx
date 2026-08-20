@@ -6,12 +6,13 @@ function AddTaskPage() {
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [date, setDate] = useState("");
-  const [error, setError] = useState("");
+  const [starterror, setstarterror] = useState("");
+  const [enderror, setenderror] = useState("");
   const navigate = useNavigate()
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!title || !date || error || !enddate || !note) {
+    if (!title || !date || starterror || !enderror || !note) {
       alert("Please fill all fields");
       return;
     }
@@ -22,27 +23,21 @@ function AddTaskPage() {
     let startdate = new Date(date);
     let datenow = new Date();
     datenow.setHours(0, 0, 0, 0);
-    setError(!(startdate >= datenow) || !(enddate >= startdate));
+    setstarterror(!(startdate >= datenow));
 
   }
   function handlestarttime(date, enddate) {
     let startdate = new Date(date);
     let datenow = new Date();
     datenow.setHours(0, 0, 0, 0);
-    setError(!(startdate >= datenow) || !(enddate >= startdate));
+    setstarterror(!(startdate >= datenow));
 
-  } function handlestarttime(date, enddate) {
-    let startdate = new Date(date);
-    let datenow = new Date();
-    datenow.setHours(0, 0, 0, 0);
-    setError(!(startdate >= datenow) || !(enddate >= startdate));
-
-  }
+  } 
   function handleendtime(enddate) {
     let enddate = new Date(enddate);
     let startdate = new Date(startdate);
     datenow.setHours(0, 0, 0, 0);
-    setError(!(enddate >= startdate));
+    setenderror(!(enddate >= startdate));
 
   }
   return (
@@ -80,7 +75,7 @@ function AddTaskPage() {
                 setDate(e.target.value);
                 handlestarttime(e.target.value);
               }} />
-            {error && <p style={{ color: "red" }}>your enter invailed date </p>}
+            {starterror && <p style={{ color: "red" }}>your enter invailed date </p>}
           </div>
           <div> <label htmlFor="enddate">Task End Date</label>
             <input
@@ -91,7 +86,7 @@ function AddTaskPage() {
                 setEnddate(e.target.value);
                 handleendtime(e.target.value);
               }} /></div>
-          {error && <p style={{ color: "red" }}>your enter invailed date </p>}
+          {enderror && <p style={{ color: "red" }}>your enter invailed date </p>}
           <button type="submit">💾 Save Task</button>
         </form>
       </div >
