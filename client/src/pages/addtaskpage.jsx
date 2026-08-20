@@ -26,16 +26,16 @@ function AddTaskPage() {
     setstarterror(!(startdate >= datenow));
 
   }
-  function handlestarttime(date, enddate) {
+  function handlestarttime(date) {
     let startdate = new Date(date);
     let datenow = new Date();
     datenow.setHours(0, 0, 0, 0);
     setstarterror(!(startdate >= datenow));
 
   } 
-  function handleendtime(enddate) {
+  function handleendtime(date,enddate) {
     let enddate = new Date(enddate);
-    let startdate = new Date(startdate);
+    let startdate = new Date(date);
     datenow.setHours(0, 0, 0, 0);
     setenderror(!(enddate >= startdate));
 
