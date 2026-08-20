@@ -22,9 +22,7 @@ function AddTaskPage() {
   function handletime(date){
     let startdate=  new Date(date);
   let datenow=new Date();
-    if(startdate<datenow){
-    console.log(<p style={{color:"red"}}>start date is in the past</p>)
-    }
+    setError(startdate < datenow);
     
   }
   return (
@@ -62,7 +60,7 @@ function AddTaskPage() {
   setDate(e.target.value);
   handletime(e.target.value);
 }} />
-(error&& <p style={{color:"red"}}>your enter invailed date </p> )
+{error && <p style={{color:"red"}}>your enter invailed date </p> }
 </div>
 <div> <label htmlFor="enddate">Task End Date</label>
         <input
