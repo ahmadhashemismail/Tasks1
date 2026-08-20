@@ -5,26 +5,45 @@ import { createTask } from "../api";
 function AddTaskPage() {
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
-  const [ date, setDate] = useState("");
-  const [enddate, setEnddate] = useState("");
-  const[error,setError] =useState("");
+  const [date, setDate] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate()
-  
+
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!title || !date ||error ||!enddate|| !note ) {
-   alert("Please fill all fields");
-    return;
+    if (!title || !date || error || !enddate || !note) {
+      alert("Please fill all fields");
+      return;
     }
-    await createTask({ title, note, date,enddate });
+    await createTask({ title, note, date, enddate });
     navigate("/tasks");
   }
-  function handletime(date,enddate){
-    let startdate=  new Date(date);
-  let datenow=new Date();
-   datenow.setHours(0, 0, 0, 0);
-   setError (!(startdate >= datenow) || !(enddate >= startdate));
-    
+  function handlestarttime(date, enddate) {
+    let startdate = new Date(date);
+    let datenow = new Date();
+    datenow.setHours(0, 0, 0, 0);
+    setError(!(startdate >= datenow) || !(enddate >= startdate));
+
+  }
+  function handlestarttime(date, enddate) {
+    let startdate = new Date(date);
+    let datenow = new Date();
+    datenow.setHours(0, 0, 0, 0);
+    setError(!(startdate >= datenow) || !(enddate >= startdate));
+
+  } function handlestarttime(date, enddate) {
+    let startdate = new Date(date);
+    let datenow = new Date();
+    datenow.setHours(0, 0, 0, 0);
+    setError(!(startdate >= datenow) || !(enddate >= startdate));
+
+  }
+  function handleendtime(enddate) {
+    let enddate = new Date(enddate);
+    let startdate = new Date(startdate);
+    datenow.setHours(0, 0, 0, 0);
+    setError(!(enddate >= startdate));
+
   }
   return (
 
@@ -43,35 +62,38 @@ function AddTaskPage() {
               autoFocus
             />
           </div>
-<div>
-          <label htmlFor="note">Task Details</label>
-          <textarea
-            id="note"
-            placeholder="Enter task details or notes"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-          />
-      </div>
-      <div> <label htmlFor="date">Task start  Date</label>
-        <input
-          id="date"
-          type="date"
-          value={date}
-        onChange={(e) => {
-  setDate(e.target.value);
-  handletime(e.target.value);
-}} />
-{error && <p style={{color:"red"}}>your enter invailed date </p> }
-</div>
-<div> <label htmlFor="enddate">Task End Date</label>
-        <input
-          id="enddate"
-          type="date"
-          value={enddate}
-          onChange={(e) => setEnddate(e.target.value)} /></div>
-{error && <p style={{color:"red"}}>your enter invailed date </p> } 
-      <button type="submit">💾 Save Task</button>
-    </form>
+          <div>
+            <label htmlFor="note">Task Details</label>
+            <textarea
+              id="note"
+              placeholder="Enter task details or notes"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+            />
+          </div>
+          <div> <label htmlFor="date">Task start  Date</label>
+            <input
+              id="date"
+              type="date"
+              value={date}
+              onChange={(e) => {
+                setDate(e.target.value);
+                handlestarttime(e.target.value);
+              }} />
+            {error && <p style={{ color: "red" }}>your enter invailed date </p>}
+          </div>
+          <div> <label htmlFor="enddate">Task End Date</label>
+            <input
+              id="enddate"
+              type="date"
+              value={enddate}
+              onChange={(e) => {
+                setEnddate(e.target.value);
+                handleendtime(e.target.value);
+              }} /></div>
+          {error && <p style={{ color: "red" }}>your enter invailed date </p>}
+          <button type="submit">💾 Save Task</button>
+        </form>
       </div >
     </main >
   );
