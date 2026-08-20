@@ -19,11 +19,11 @@ function AddTaskPage() {
     await createTask({ title, note, date,enddate });
     navigate("/tasks");
   }
-  function handletime(date){
+  function handletime(date,enddate){
     let startdate=  new Date(date);
   let datenow=new Date();
    datenow.setHours(0, 0, 0, 0);
-    setError(!(startdate >= datenow));
+   setError (!(startdate >= datenow) || !(enddate >= startdate));
     
   }
   return (
@@ -68,7 +68,8 @@ function AddTaskPage() {
           id="enddate"
           type="date"
           value={enddate}
-          onChange={(e) => setEnddate(e.target.value)} /></div> 
+          onChange={(e) => setEnddate(e.target.value)} /></div>
+{error && <p style={{color:"red"}}>your enter invailed date </p> } 
       <button type="submit">💾 Save Task</button>
     </form>
       </div >
