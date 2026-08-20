@@ -13,8 +13,8 @@ function AddTaskPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     if (!title.trim()||   !date ||error||!enddate|| !note ) {
-      setError("Please fill all fields");
-      return;
+   alert("Please fill all fields");
+    return;
     }
     await createTask({ title, note, date,enddate });
     navigate("/tasks");
