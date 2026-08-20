@@ -22,6 +22,7 @@ function AddTaskPage() {
   function handletime(date){
     let startdate=  new Date(date);
   let datenow=new Date();
+   datenow.setHours(0, 0, 0, 0);
     setError(!(startdate >= datenow));
     
   }
