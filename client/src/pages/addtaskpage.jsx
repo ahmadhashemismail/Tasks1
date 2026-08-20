@@ -6,25 +6,19 @@ function AddTaskPage() {
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [date, setDate] = useState("");
+  const [enddate, setEnddate] = useState("");
   const [starterror, setstarterror] = useState("");
   const [enderror, setenderror] = useState("");
   const navigate = useNavigate()
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!title || !date || starterror || !enderror || !note) {
+    if (!title || !date || starterror || enderror || !note) {
       alert("Please fill all fields");
       return;
     }
     await createTask({ title, note, date, enddate });
     navigate("/tasks");
-  }
-  function handlestarttime(date, enddate) {
-    let startdate = new Date(date);
-    let datenow = new Date();
-    datenow.setHours(0, 0, 0, 0);
-    setstarterror(!(startdate >= datenow));
-
   }
   function handlestarttime(date) {
     let startdate = new Date(date);
@@ -34,10 +28,9 @@ function AddTaskPage() {
 
   } 
   function handleendtime(date,enddate) {
-    let enddate = new Date(enddate);
+    let end = new Date(enddate);
     let startdate = new Date(date);
-    datenow.setHours(0, 0, 0, 0);
-    setenderror(!(enddate >= startdate));
+    setenderror(!(end >= startdate));
 
   }
   return (
@@ -74,6 +67,7 @@ function AddTaskPage() {
               onChange={(e) => {
                 setDate(e.target.value);
                 handlestarttime(e.target.value);
+                if (enddate) handleendtime(e.target.value, enddate);
               }} />
             {starterror && <p style={{ color: "red" }}>your enter invailed date </p>}
           </div>
@@ -84,7 +78,7 @@ function AddTaskPage() {
               value={enddate}
               onChange={(e) => {
                 setEnddate(e.target.value);
-                handleendtime(e.target.value);
+                handleendtime(date,e.target.value);
               }} /></div>
           {enderror && <p style={{ color: "red" }}>your enter invailed date </p>}
           <button type="submit">💾 Save Task</button>
